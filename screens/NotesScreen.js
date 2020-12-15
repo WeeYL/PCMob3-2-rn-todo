@@ -14,7 +14,15 @@ export default function NotesScreen({navigation, route}) {
 
   // useState
       const [notes, setNotes] = useState([])
-      const [edit, setEdit] = useState(true)
+
+
+  // toggle edit change
+  useEffect(() => {
+    if(route.params?.editText){
+      refreshNotes()
+    }
+  }, [route.params?.editText])
+    
 
 
 
@@ -36,23 +44,6 @@ export default function NotesScreen({navigation, route}) {
   }, []);
   
 
-
-  // refresh page with edit
-
-  // console.log("note:" + edit)
-
-  if (route.params?.newEdit){
-    // setEdit(route.params.newEdit)
-    // console.log('edit:'+edit)
-  }
-
-
-  // useEffect(() => {
-  //   if (route.params?.newEdit) {
-  //       refreshNotes()
-  //   }
-  // }, [route.params.newEdit]);
-
   // refresh display function
     function refreshNotes() {
 
@@ -67,6 +58,8 @@ export default function NotesScreen({navigation, route}) {
       );
     });
   }
+
+
 
   // useEffect upon submit, insert data into dataase
 
@@ -133,7 +126,7 @@ export default function NotesScreen({navigation, route}) {
 
           <View style={{flexDirection:"row", width:60,}}>
 
-            <TouchableOpacity style={{marginRight:20}} onPress={()=>{navigation.navigate('edit notes',{...item, edit})}}>
+            <TouchableOpacity style={{marginRight:20}} onPress={()=>{navigation.navigate('edit notes',{...item})}}>
               <AntDesign name="edit" size={24} color="black" />
             </TouchableOpacity>
 
