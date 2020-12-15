@@ -9,6 +9,7 @@ import NotesStack from './screens/NotesStack'
 import AddScreen from './screens/AddScreen'
 import EditScreen from './screens/EditScreen'
 
+
 const Stack = createStackNavigator();
 
 export default function App() {
